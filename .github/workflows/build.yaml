@@ -39,11 +39,24 @@ jobs:
           npm i
           NODE_ENV=production npm run build
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload dist folder
+          path: './dist'
+
       - name: Deploy to GitHub Pages
-        run: |
-          cd dist
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+#      - name: Deploy to GitHub Pages
+#        run: |
+#          cd dist
          # git init
-          git add -A
-          git commit -m "🚀 Deploy id ${GITHUB_RUN_ID}"
-          git push -f "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:main
+#          git add -A
+#          git commit -m "🚀 Deploy id ${GITHUB_RUN_ID}"
+#          git push -f "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:main
 
