@@ -22,9 +22,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Node.js 
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 20
+          cache: 'npm'
 
       - name: Configure Git Authentication 🔑
         env:
@@ -39,7 +40,7 @@ jobs:
 
       - name: Install Dependencies and Build
         run: |
-          npm i
+          npm ci
           NODE_ENV=production npm run build
 
       - name: Setup Pages
